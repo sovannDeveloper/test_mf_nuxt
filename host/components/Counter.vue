@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
-import { useCounterStore } from "../stores/counter";
-const counterStore = useCounterStore();
-const { count } = storeToRefs(counterStore);
+import { loadRemoteModule } from "@softarc/native-federation";
+import { defineAsyncComponent } from "vue";
+
+const RemoteComponent: any = defineAsyncComponent(async () => loadRemoteModule("remote-app", "./Counter"));
 </script>
 
 <template>
-  <button class="counter" @click="counterStore.increment">
-    Host counter: {{ count }}
-  </button>
+  <div>
+    <RemoteComponent v-if="!!RemoteComponent" />
+  </div>
 </template>

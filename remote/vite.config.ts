@@ -1,30 +1,29 @@
+// vite.config.js
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
 import { federation } from "@module-federation/vite";
 import { createEsBuildAdapter } from "@softarc/native-federation-esbuild";
 import pluginVue from "esbuild-plugin-vue-next";
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
 
-// https://vitejs.dev/config/
-export default defineConfig(async ({ command, mode }) => {
-  return {
-    server: {
-      fs: {
-        allow: ["."],
-      },
+export default defineConfig(async ({ command }) => ({
+  server: {
+    port: 3001,     // Or any port you like
+    hmr: true,      // ✅ Enable HMR explicitly
+    watch: {
+      usePolling: true,   // Optional: improves reload reliability in some environments
     },
-    plugins: [
-      await federation({
-        options: {
-          workspaceRoot: __dirname,
-          outputPath: "dist",
-          tsConfig: "tsconfig.json",
-          federationConfig: "module-federation/federation.config.cjs",
-          verbose: true,
-          dev: command === "serve",
-        },
-        adapter: createEsBuildAdapter({ plugins: [pluginVue()] }),
-      }),
-      vue()
-    ]
-  }
-})
+  },
+  plugins: [
+    await federation({
+      options: {
+        workspaceRoot: __dirname,
+        outputPath: "dist",
+        federationConfig: "federation.config.cjs",
+        dev: command === "serve",
+        verbose: true,
+      },
+      adapter: createEsBuildAdapter({ plugins: [pluginVue()] }),
+    }),
+    vue(),
+  ],
+}));

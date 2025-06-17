@@ -3,8 +3,8 @@
 
 <template>
   <div>
-    Host
-    <Counter></Counter>
-    <Remote></Remote>
+    <Header />
+    <CounterTest /><br><br>
+    <Counter />
   </div>
 </template>

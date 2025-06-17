@@ -11,9 +11,9 @@
   },
   "devDependencies": {
     "@module-federation/vite": "^0.2.8",
-    "@nuxt/devtools": "latest",
     "@softarc/native-federation": "^2.0.4",
     "@softarc/native-federation-esbuild": "^2.0.4",
+    "@nuxt/devtools": "latest",
     "nuxt": "^3.8.0",
     "vue": "^3.3.7",
     "vue-router": "^4.2.5"
