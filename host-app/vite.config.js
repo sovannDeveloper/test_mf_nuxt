@@ -21,7 +21,7 @@ export default defineConfig({
         remote: {
           type: 'module',
           name: 'remote',
-          entry: 'http://localhost:3001/remoteEntry.js',
+          entry: 'http://localhost:3000/_nuxt/remoteEntry.js',
           entryGlobalName: 'remote',
           shareScope: 'default',
         },

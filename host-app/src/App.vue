@@ -1,7 +1,7 @@
 <script setup>
 import { defineAsyncComponent } from "vue";
 const RemoteMFE = defineAsyncComponent(
-  () => import("remote/App")
+  () => import("remote/Header")
 );
 </script>
 
